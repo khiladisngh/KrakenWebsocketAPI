@@ -189,6 +189,12 @@ class CfWebSocketMethods(object):
                                 if k == "value":
                                     message_json[item_name][key][cur_name]["price"] = \
                                         message_json[item_name][key][cur_name].pop(k)
+            if item_name == "margin_accounts":
+                for index, item in enumerate(message_json[item_name]):
+                    for k, v in item.items():
+                        if k == "name":
+                            message_json[item_name][index]["Ticker"] = message_json[item_name][
+                                index].pop(k)
             if item_name == "timestamp":
                 message_json["Process Epoch Date"] = message_json.pop(item_name)
 
